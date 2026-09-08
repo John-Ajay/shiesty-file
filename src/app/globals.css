@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0a0a0a;
+  --bg-raised: #121212;
+  --ink: #e8e6e1;
+  --ink-dim: #8a8a86;
+  --ink-faint: #4a4a48;
+  --line: #2a2a28;
+  --red: #b23b2e;
+  --red-dim: #6e2c24;
+  --font-display: 'Arial Narrow', 'Helvetica Neue Condensed', Oswald, Impact, sans-serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', 'Space Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+}
+
+html, body {
+  background: var(--bg);
+}
+
+body {
+  font-family: var(--font-mono);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* subtle grain */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* scanlines */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 59;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.02) 0px,
+    rgba(255, 255, 255, 0.02) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+@keyframes blink {
+  0%, 45% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.82; }
+  94% { opacity: 1; }
+  96% { opacity: 0.88; }
+  97% { opacity: 1; }
+}
+.crt-flicker {
+  animation: flicker 6s infinite;
+}
+
+@keyframes glitch-shift {
+  0% { transform: translate(0,0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(1px, -1px); }
+  60% { transform: translate(-1px, 0); }
+  80% { transform: translate(1px, 1px); }
+  100% { transform: translate(0,0); }
+}
+.glitch {
+  animation: glitch-shift 0.25s steps(2) 3;
+}
+
+@keyframes typein {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  animation: fadeUp 0.4s ease-out both;
+}
+
+@keyframes stampIn {
+  0% { opacity: 0; transform: scale(2.2) rotate(-8deg); }
+  60% { opacity: 1; }
+  100% { opacity: 1; transform: scale(1) rotate(-8deg); }
+}
+.stamp-in {
+  animation: stampIn 0.5s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blink, .crt-flicker, .glitch, .fade-up, .stamp-in {
+    animation: none !important;
+  }
+}
+
+::selection {
+  background: var(--red-dim);
+  color: #fff;
+}
+
+/* focus visibility */
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 1px solid var(--red);
+  outline-offset: 2px;
+}

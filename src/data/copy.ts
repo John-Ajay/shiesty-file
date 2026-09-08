@@ -1,0 +1,15 @@
+export const COPY = {
+  caseFile: "CASE FILE #0001",
+  shareIntentText: "I earned my first stripe.\n\n@ProjectShiesty",
+  accessDenied: "ACCESS DENIED.",
+  clearanceRequired: "CLEARANCE REQUIRED.",
+  identityConfirmed: "IDENTITY CONFIRMED.",
+  recordFound: "RECORD FOUND.",
+  missionActive: "MISSION ACTIVE.",
+  operationalStatusActive: "OPERATIONAL STATUS: ACTIVE.",
+  classified: "CLASSIFIED.",
+  doNotShare: "DO NOT SHARE.",
+  notSupposedToFind: "YOU WERE NOT SUPPOSED TO FIND THIS.",
+  stripesAreEarned: "STRIPES ARE EARNED. NO SHORTCUTS.",
+  theOperationContinues: "THE OPERATION CONTINUES.",
+};
